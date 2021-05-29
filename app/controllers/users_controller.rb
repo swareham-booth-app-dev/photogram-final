@@ -8,13 +8,28 @@ class UsersController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
+    the_username = params.fetch("username")
 
-    matching_photos = Photo.where({ :id => the_id })
+    matching_users = User.where({ :username => the_username })
+    @the_user = matching_users.at(0)
 
-    @the_photo = matching_photos.at(0)
+    session_user_is_follower = false
+    @the_user.followers.each do |follower|
+      if follower.id = @the_user.id
+        session_user_is_follower = true
+      end
+    end
 
-    render({ :template => "photos/show.html.erb" })
+
+    # Allowed to view if public user or if its you or if you're already following them
+    
+    if session[:user_id] == @the_user.id || !@the_user.private  || session_user_is_follower
+      render({ :template => "users/show.html.erb" })
+    else
+      redirect_to("/users", { :alert => "You're not authorized for that."})
+    end
+
+    
   end
 
   def create

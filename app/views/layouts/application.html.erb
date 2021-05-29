@@ -40,6 +40,11 @@
             </li>
           <% end %>
       </ul>
+    <% if alert.present? %>
+      <div>
+        <%= alert %>
+      </div>
+    <% end %>
     </nav>
 
   <body>
