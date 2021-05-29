@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def index
     @all_users = User.all
 
-    @all_users = @all_users.order({ :username => :desc })
+    @all_users = @all_users.order({ :username => :asc })
 
     render({ :template => "users/index.html.erb" })
   end
