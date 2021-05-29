@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def index
     @all_users = User.all
-
     @all_users = @all_users.order({ :username => :asc })
+    @current_user = User.where( :id => session[:user_id]).at(0)
 
     if session[:user_id]
       @show_follow = true

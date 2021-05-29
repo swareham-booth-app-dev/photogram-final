@@ -32,4 +32,12 @@ class User < ApplicationRecord
   has_many(:feed, { :through => :following, :source => :own_photos })
   has_many(:activity, { :through => :following, :source => :liked_photos })
 
+  def get_follow_request(other_user_id)
+    self.sent_follow_requests.each do |sent_request|
+      if sent_request.recipient_id == other_user_id
+        return sent_request.id
+      end
+    end
+    return nil
+  end
 end
