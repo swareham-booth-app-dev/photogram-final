@@ -20,10 +20,11 @@ class UsersController < ApplicationController
       end
     end
 
-
+    if ! session[:user_id] && !@the_user.private
+      redirect_to("/user_sign_in", { :alert => "You have to sign in first."})
     # Allowed to view if public user or if its you or if you're already following them
     
-    if session[:user_id] == @the_user.id || !@the_user.private  || session_user_is_follower
+    elsif session[:user_id] == @the_user.id || !@the_user.private  || session_user_is_follower
       render({ :template => "users/show.html.erb" })
     else
       redirect_to("/users", { :alert => "You're not authorized for that."})
