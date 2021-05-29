@@ -25,6 +25,7 @@
           No
           <% end %>
       </td>
+      <% if @show_follow %>
       <td>
             <form action="/insert_follow_request" method="post">
               <input type="hidden" name="query_recipient_id" value="<%= user.id %>">
@@ -34,6 +35,7 @@
               </button>
             </form>
       </td>
+      <% end %>
 
       <td>
         <a href="/users/<%= user.username %>">Show details</a>

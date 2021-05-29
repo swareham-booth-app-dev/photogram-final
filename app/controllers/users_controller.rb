@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 
     @all_users = @all_users.order({ :username => :asc })
 
+    if session[:user_id]
+      @show_follow = true
+    else
+      @show_follow = false
+    end
     render({ :template => "users/index.html.erb" })
   end
 
