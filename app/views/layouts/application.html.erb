@@ -46,7 +46,12 @@
       </div>
     <% end %>
     </nav>
-
+    <% if notice.present? %>
+      <div>
+        <%= notice %>
+      </div>
+    <% end %>
+    </nav>
   <body>
     <%= yield %>
   </body>
