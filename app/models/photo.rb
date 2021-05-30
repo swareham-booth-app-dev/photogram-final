@@ -28,4 +28,8 @@ class Photo < ApplicationRecord
 
   end
 
+  def get_user_like(user_id)
+    return self.likes.where(:fan_id => user_id).at(0)
+  end
+
 end

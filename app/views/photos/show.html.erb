@@ -35,11 +35,18 @@
 
   <dt>Add a fan</dt>
   <dd>
+  <% if @the_photo.fans.include? @current_user %>
+      <a href="/delete_like/<%= @the_photo.get_user_like(@current_user.id).id %>">
+        Unlike
+      </a>
+  <% else %>
 
     <form action="/insert_like" method="post">
       <input type="hidden" value="<%= @the_photo.id %>" name="query_photo_id">
       <button>Like</button>
     </form>
+  
+  <% end %>
   </dd>
 
   <% if @current_user.id == @the_photo.owner_id %>
