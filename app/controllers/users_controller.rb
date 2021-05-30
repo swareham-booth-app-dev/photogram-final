@@ -92,4 +92,11 @@ class UsersController < ApplicationController
     render({ :template => "users/liked_photos.html.erb" })
   end
 
+  def feed
+    the_username = params.fetch("username")
+    matching_users = User.where({ :username => the_username })
+    @the_user = matching_users.at(0)
+    render({ :template => "users/feed.html.erb" })
+  end
+
 end
