@@ -34,8 +34,6 @@ class UsersController < ApplicationController
     else
       redirect_to("/users", { :alert => "You're not authorized for that."})
     end
-
-    
   end
 
   def create
@@ -86,4 +84,12 @@ class UsersController < ApplicationController
 
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
   end
+
+  def liked_photos
+    the_username = params.fetch("username")
+    matching_users = User.where({ :username => the_username })
+    @the_user = matching_users.at(0)
+    render({ :template => "users/liked_photos.html.erb" })
+  end
+
 end
