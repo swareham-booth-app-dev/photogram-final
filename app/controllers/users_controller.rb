@@ -24,8 +24,8 @@ class UsersController < ApplicationController
         session_user_is_follower = true
       end
     end
-
-    if ! session[:user_id] && !@the_user.private
+    # If not signed in cannot view user show pages
+    if ! session[:user_id]# && !@the_user.private
       redirect_to("/user_sign_in", { :alert => "You have to sign in first."})
     # Allowed to view if public user or if its you or if you're already following them
     
