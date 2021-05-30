@@ -5,9 +5,9 @@ class UsersController < ApplicationController
     @current_user = User.where( :id => session[:user_id]).at(0)
 
     if session[:user_id]
-      @show_follow = true
+      @show_follow_column = true
     else
-      @show_follow = false
+      @show_follow_column = false
     end
     render({ :template => "users/index.html.erb" })
   end

@@ -40,4 +40,9 @@ class User < ApplicationRecord
     end
     return nil
   end
+
+  def get_follow_request_to_other(other_user)
+    follow_request = self.sent_follow_requests.where({:recipient_id => other_user.id}).at(0)
+    return follow_request
+  end
 end

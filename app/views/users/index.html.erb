@@ -25,15 +25,21 @@
           No
           <% end %>
       </td>
-      <% if @show_follow %>
-        <% relevant_follow_request_id = nil %>
-        <% if @current_user %>
-          <% relevant_follow_request_id = @current_user.get_follow_request(user.id) %>
-        <% end %>
-        <% if relevant_follow_request_id %>
-          <a href="/delete_follow_request/<%= relevant_follow_request_id %>">Unfollow</a>
+      
+      <% if @show_follow_column %>
+      <td>
+        <% the_request = @current_user.get_follow_request_to_other(user) %>
+        <% if the_request %>
+          <% if the_request.status == "accepted" %>
+            <a href="/delete_follow_request/<%= the_request.id %>">Unfollow</a>
+          <% elsif the_request.status == "pending" %>
+            Request sent. <a href="/delete_follow_request/<%= the_request.id %>">Cancel</a>
+          <% elsif the_request.status == "rejected" %>
+
+          <% end %>
+
         <% else %>
-        <td>
+        
               <form action="/insert_follow_request" method="post">
                 <input type="hidden" name="query_recipient_id" value="<%= user.id %>">
 
