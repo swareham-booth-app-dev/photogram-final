@@ -22,7 +22,7 @@ class FollowRequestsController < ApplicationController
     the_follow_request.sender_id = session.fetch(:user_id)
     the_follow_request.recipient_id = params.fetch("query_recipient_id")
     #  TODO: review this
-    target_user = User.where( :user_id => the_follow_request.recipient_id ).at(0)
+    target_user = User.where( :id => the_follow_request.recipient_id ).at(0)
     if target_user.private
       the_follow_request.status = "pending"
     else
