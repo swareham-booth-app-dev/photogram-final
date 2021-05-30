@@ -19,6 +19,34 @@
           </form>
     </div>
 
+  <% if @the_user == @current_user %>
+    <h4>Pending follow requests</h4>
+          <ul>
+          <% @the_user.received_follow_requests.each do |request| %>
+              <li>
+                <%= request.sender.username %>
+
+                <form action="/modify_follow_request/<%= request.id %>" method="post">
+                  <input name="query_status" value="accepted" type="hidden">
+
+                  <button>
+                    Accept
+                  </button>
+                </form>
+
+                <form action="/modify_follow_request/<%= request.id %>" method="post">
+                  <input name="query_status" value="rejected" type="hidden">
+                
+                  <button>
+                    Reject
+                  </button>
+                </form>
+              </li>
+          <% end %>
+          </ul>
+  <% end %>
+
+
   </dd>
 
   <dt>Following</dt>

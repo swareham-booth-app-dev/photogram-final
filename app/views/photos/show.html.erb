@@ -30,7 +30,7 @@
 
   <dt>Fans</dt>
   <dd>
-     <%= @the_photo.fans.map{ |other_user| other_user.username}.join(" ") %>
+     <%= @the_photo.fans.map{ |other_user| other_user.username}.join(", ") %>
   </dd>
 
   <dt>Add a fan</dt>
