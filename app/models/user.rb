@@ -45,4 +45,14 @@ class User < ApplicationRecord
     follow_request = self.sent_follow_requests.where({:recipient_id => other_user.id}).at(0)
     return follow_request
   end
+
+  def get_accepted_following_ids
+    return self.sent_follow_requests.where({:status => "accepted"}).map{ |request| request.recipient_id}
+  end
+
+  def get_accepted_following_photos
+    accepted_following_ids = self.get_accepted_following_ids
+    accepted_following_users = User.joins()
+    return 
+  end
 end

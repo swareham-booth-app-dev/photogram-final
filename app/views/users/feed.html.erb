@@ -70,8 +70,10 @@
 
     <th></th>
   </tr>
-
+    <% p @the_user.feed.length %>
+    <% p @the_user.sent_follow_requests.where({:status => "accepted"}).length %>
   <% @the_user.feed.each do |photo| %>
+
   <tr>
     <td>
       <img src="<%= photo.image %>">
