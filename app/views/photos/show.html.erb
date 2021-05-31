@@ -18,7 +18,7 @@
 
   <dt>Posted</dt>
   <dd>
-    <%= @the_photo.created_at %>
+    <%= time_ago_in_words(@the_photo.created_at) %> ago
   </dd>
 
   <dt>Likes count</dt>
@@ -92,7 +92,7 @@
       </td>
 
       <td>
-        <%= comment.created_at %>
+        <%= time_ago_in_words(comment.created_at) %> ago
       </td>
     </tr>  
     <% end %>

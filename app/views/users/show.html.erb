@@ -134,9 +134,8 @@
     <td>
       <%= photo.caption %>
     </td>
-<!-- TODO: format date correctly -->
     <td>
-      <%= photo.created_at %>
+      <%= time_ago_in_words(photo.created_at) %> ago
     </td>
 
     <td>
