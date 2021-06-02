@@ -23,6 +23,8 @@ class Photo < ApplicationRecord
   has_many(:followers, { :through => :owner, :source => :following })
   has_many(:fan_followers, { :through => :fans, :source => :following })
 
+  mount_uploader :image, ImageUploader
+
   def posted_date_text
     today = Date.today
 
